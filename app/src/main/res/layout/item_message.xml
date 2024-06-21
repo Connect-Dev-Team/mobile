@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="#FFD8D8D8" />
-    <size android:height="0.5dp"/>
-</shape>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Layout untuk pesan yang diterima -->
+    <LinearLayout
+        android:id="@+id/receivedMessageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/received_message_background"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/receivedMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Received Message" />
+    </LinearLayout>
+
+    <!-- Layout untuk pesan yang dikirim -->
+    <LinearLayout
+        android:id="@+id/sentMessageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sent_message_background"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/sentMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sent Message" />
+    </LinearLayout>
+</LinearLayout>
