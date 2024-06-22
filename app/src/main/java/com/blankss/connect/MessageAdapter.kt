@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.blankss.connect.data.Message
-import com.blankss.connect.data.MessageResponse
 
 //ini adalah adapter tolong dipindah ^_^
 

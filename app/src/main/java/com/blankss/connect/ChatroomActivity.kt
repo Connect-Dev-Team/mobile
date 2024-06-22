@@ -70,7 +70,7 @@ class ChatroomActivity : AppCompatActivity() {
                         messageAdapter.notifyDataSetChanged()
                     }
                 } else {
-                    Log.e("ChatroomActivity", "Gagal memuat pesan: ${response.errorBody()}")
+                    Log.e("ChatroomActivity", "Failed to load messages: ${response.errorBody()}")
                 }
             }
 

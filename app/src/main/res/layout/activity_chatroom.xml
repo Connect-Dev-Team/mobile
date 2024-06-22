@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4CAF50"
+        android:background="#FF5722"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Doi"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -64,7 +64,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:background="#C8E6C9">
+        android:background="#E6CBC8">
 
         <EditText
             android:id="@+id/messageEditText"
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kirim"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="#FF5722"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </RelativeLayout>
