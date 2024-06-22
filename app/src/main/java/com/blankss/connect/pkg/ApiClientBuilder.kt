@@ -23,4 +23,5 @@ class ApiClientBuilder {
     }
 
     fun getUserServices(): UserService = client.create(UserService::class.java)
+    fun getChatServices(): ChatApi = client.create(ChatApi::class.java)
 }

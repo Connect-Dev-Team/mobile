@@ -4,6 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.blankss.connect.data.Message
+
 //ini adalah adapter tolong dipindah ^_^
 
 class MessageAdapter(private val messageList: List<Message>) :
