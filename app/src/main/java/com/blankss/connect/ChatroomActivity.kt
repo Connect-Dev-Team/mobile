@@ -75,7 +75,7 @@ class ChatroomActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<MessageResponse>>, t: Throwable) {
-                Log.e("ChatroomActivity", "Error cuy: ${t.message}")
+                Log.e("ChatroomActivity", "Error: ${t.message}")
             }
         })
     }
