@@ -4,11 +4,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.blankss.connect.data.Message
+import com.blankss.connect.data.MessageResponse
 
 //ini adalah adapter tolong dipindah ^_^
 
-class MessageAdapter(private val messageList: List<Message>) :
+class MessageAdapter(private val messageList: List<MessageResponse>) :
     RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
