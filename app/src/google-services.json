@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "12028145945",
+    "project_id": "connect-9f0ed",
+    "storage_bucket": "connect-9f0ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12028145945:android:17044a0d1bb7813a9a1588",
+        "android_client_info": {
+          "package_name": "com.blankss.connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12028145945-bkq5t3oigit03hojiim6s4kp51dh5o4p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blankss.connect",
+            "certificate_hash": "43739a720e91566eaca21decb126f390c5ae72b1"
+          }
+        },
+        {
+          "client_id": "12028145945-guh85sbiia2qtbrngsaiko150sslofbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3KCqk1iyD4nWpvNZBrZnnvo05_kWqHWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12028145945-guh85sbiia2qtbrngsaiko150sslofbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

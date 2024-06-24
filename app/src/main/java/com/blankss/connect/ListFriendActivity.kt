@@ -32,22 +32,22 @@ class ListFriendActivity : AppCompatActivity() {
     }
 
     private fun FetchUserApi() {
-        apiClient.getUsers().enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                if (response.isSuccessful) {
-                    response.body()?.let { users ->
-                        dataUser.clear()
-                        dataUser.addAll(users)
-                        userAdapter.notifyDataSetChanged()
-                    }
-                } else {
-                    Log.e("ListFriendActivity", "Failed to get response: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                Log.e("ListFriendActivity", "API call failed: ${t.message}")
-            }
-        })
+//        apiClient.getUsers().enqueue(object : Callback<List<User>> {
+//            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+//                if (response.isSuccessful) {
+//                    response.body()?.let { users ->
+//                        dataUser.clear()
+//                        dataUser.addAll(users)
+//                        userAdapter.notifyDataSetChanged()
+//                    }
+//                } else {
+//                    Log.e("ListFriendActivity", "Failed to get response: ${response.message()}")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+//                Log.e("ListFriendActivity", "API call failed: ${t.message}")
+//            }
+//        })
     }
 }
