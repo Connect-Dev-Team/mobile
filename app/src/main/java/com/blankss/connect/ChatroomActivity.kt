@@ -116,7 +116,6 @@ class ChatroomActivity : AppCompatActivity() {
         val receiver = intent.getStringExtra("id")
 
         Firebase.auth.currentUser?.getIdToken(true)?.addOnSuccessListener {
-            Log.i("TOKEN GENERATED : ", it.token.toString())
             chatApi.getMessages(
                 sender!!,
                 receiver!!,
@@ -127,10 +126,7 @@ class ChatroomActivity : AppCompatActivity() {
                     p1: Response<StandardResponse<ArrayList<MessageDto>>>
                 ) {
                     if (p1.isSuccessful) {
-                        Log.i("SUKSES : ", "TRUE")
                         messageAdapter.dispatch(p1.body()!!.data)
-                    } else {
-                        Log.i("GAGAL:", "TRUE")
                     }
                 }
 
