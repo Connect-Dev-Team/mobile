@@ -6,12 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.blankss.connect.R
-import com.blankss.connect.data.Message
 import com.blankss.connect.data.MessageDto
 
-//ini adalah adapter tolong dipindah ^_^
-
-class MessageAdapter(private val messageList: ArrayList<MessageDto>) :
+class MessageAdapter(val messageList: ArrayList<MessageDto>) :
     RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -43,9 +40,15 @@ class MessageAdapter(private val messageList: ArrayList<MessageDto>) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun dipatch(data: ArrayList<MessageDto>) {
-        data.clear()
-        data.addAll(data)
+    fun dispatch(data: ArrayList<MessageDto>) {
+        messageList.clear()
+        messageList.addAll(data)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updatePartial(data: MessageDto) {
+        messageList.add(data)
         notifyDataSetChanged()
     }
 }

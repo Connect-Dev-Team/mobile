@@ -15,12 +15,12 @@
           <targets>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="LocalEmulator" identifier="path=/home/blanks/.android/avd/main-emu.avd" />
+                <DeviceId pluginId="PhysicalDevice" identifier="serial=22132034" />
               </handle>
             </Target>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="PhysicalDevice" identifier="serial=22132034" />
+                <DeviceId pluginId="LocalEmulator" identifier="path=/Users/rendisaputra/.android/avd/Pixel_3a_API_34_extension_level_7_arm64-v8a.avd" />
               </handle>
             </Target>
           </targets>

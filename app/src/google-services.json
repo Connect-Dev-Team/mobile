@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "12028145945-7rgebvbge8ti1dvcem2tlpd547o7i73j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blankss.connect",
+            "certificate_hash": "b5d38a35dd8f9a693d07f0952b2a917add254600"
+          }
+        },
+        {
           "client_id": "12028145945-bkq5t3oigit03hojiim6s4kp51dh5o4p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

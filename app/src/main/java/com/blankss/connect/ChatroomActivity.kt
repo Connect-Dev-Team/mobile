@@ -2,9 +2,11 @@ package com.blankss.connect
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankss.connect.adapter.MessageAdapter
+import com.blankss.connect.data.CreateMessageDto
 import com.blankss.connect.data.Message
 import com.blankss.connect.data.MessageDto
 import com.blankss.connect.data.StandardResponse
@@ -14,8 +16,14 @@ import com.blankss.connect.pkg.ApiInference
 import com.blankss.connect.pkg.ChatApi
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.google.gson.Gson
 import io.socket.client.IO
 import io.socket.client.Socket
+import io.socket.emitter.Emitter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +32,7 @@ import retrofit2.Response
 class ChatroomActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChatroomBinding
-    private val messageAdapter = MessageAdapter(arrayListOf())
+    private lateinit var messageAdapter: MessageAdapter
     private lateinit var chatApi: ChatApi
     private lateinit var mSocket: Socket
 
@@ -46,6 +54,21 @@ class ChatroomActivity : AppCompatActivity() {
 
         mSocket.emit("regist_user", Firebase.auth.currentUser?.uid)
 
+        mSocket.on("new_message"
+        ) { args ->
+            val gson = Gson()
+            val concrete = gson.fromJson<MessageDto>(args[0].toString(), MessageDto::class.java)
+            Log.i("DATA SOCKET : ", concrete.content)
+            CoroutineScope(Dispatchers.Main).launch {
+                messageAdapter.updatePartial(concrete)
+            }
+
+        }
+
+        binding.username.text = intent.getStringExtra("name")
+
+        messageAdapter = MessageAdapter(arrayListOf())
+
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@ChatroomActivity)
             adapter = messageAdapter
@@ -54,10 +77,8 @@ class ChatroomActivity : AppCompatActivity() {
         binding.sendButton.setOnClickListener {
             val messageText = binding.messageEditText.text.toString()
             if (messageText.isNotEmpty()) {
-                val message = Message(messageText, true)
-//                messageList.add(message)
-//                messageAdapter.notifyItemInserted(messageList.size - 1)
-//                binding.recyclerView.scrollToPosition(messageList.size - 1)
+                createMessage()
+                binding.recyclerView.scrollToPosition(messageAdapter.messageList.size - 1)
                 binding.messageEditText.text.clear()
             }
         }
@@ -67,6 +88,27 @@ class ChatroomActivity : AppCompatActivity() {
         }
 
         fetchMessagesFromApi()
+    }
+
+    fun createMessage() {
+        val req = CreateMessageDto(
+            toId = intent.getStringExtra("id")!!,
+            fromId = Firebase.auth.currentUser!!.uid,
+            content = binding.messageEditText.text.toString()
+        )
+
+        Firebase.auth.currentUser?.getIdToken(true)?.addOnSuccessListener {
+            chatApi.createMessage(it.token!!, req).enqueue(object : Callback<StandardResponse<MessageDto>> {
+                override fun onResponse(p0: Call<StandardResponse<MessageDto>>, p1: Response<StandardResponse<MessageDto>>) {
+                    Toast.makeText(this@ChatroomActivity, "Berhasil menambah pesan", Toast.LENGTH_SHORT).show()
+                    messageAdapter.updatePartial(p1.body()!!.data)
+                }
+
+                override fun onFailure(p0: Call<StandardResponse<MessageDto>>, p1: Throwable) {
+
+                }
+            })
+        }
     }
 
     private fun fetchMessagesFromApi() {
@@ -86,7 +128,7 @@ class ChatroomActivity : AppCompatActivity() {
                 ) {
                     if (p1.isSuccessful) {
                         Log.i("SUKSES : ", "TRUE")
-                        messageAdapter.dipatch(p1.body()!!.data)
+                        messageAdapter.dispatch(p1.body()!!.data)
                     } else {
                         Log.i("GAGAL:", "TRUE")
                     }
