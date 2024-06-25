@@ -1,7 +1,7 @@
 package com.blankss.connect
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankss.connect.adapter.UserAdapter
@@ -17,10 +17,18 @@ import retrofit2.Response
 
 class ListFriendActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListfriendBinding
-    private val userAdapter = UserAdapter(arrayListOf())
+    private val userAdapter = UserAdapter(arrayListOf(), object : UserAdapter.Events {
+        override fun onClick(it: User) {
+            val intent = Intent(this@ListFriendActivity, ChatroomActivity::class.java)
+            intent.putExtra("id", it.id)
+            intent.putExtra("name", it.username)
+            intent.putExtra("image", it.profilePicture)
+
+            startActivity(intent)
+        }
+    })
     private val apiClient = ApiClientBuilder().getUserServices()
     private val auth = Firebase.auth
-    private lateinit var token: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

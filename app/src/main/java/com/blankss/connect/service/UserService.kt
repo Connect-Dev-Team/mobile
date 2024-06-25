@@ -17,7 +17,7 @@ interface UserService {
     fun getUsers(@Header("Authorization") token: String): Call<StandardResponse<ArrayList<User>>>
 
     @POST(ApiInference.ENDPOINT_USERS)
-    fun createUser(@Body body: RegisterRequest): Call<Void>
+    fun createUser(@Header("Authorization") token: String, @Body body: RegisterRequest): Call<Void>
 
     @PATCH(ApiInference.ENDPOINT_USERS)
     fun updateUser(): Call<EmptyResponse>

@@ -1,14 +1,17 @@
-package com.blankss.connect
+package com.blankss.connect.adapter
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.blankss.connect.R
 import com.blankss.connect.data.Message
+import com.blankss.connect.data.MessageDto
 
 //ini adalah adapter tolong dipindah ^_^
 
-class MessageAdapter(private val messageList: List<Message>) :
+class MessageAdapter(private val messageList: ArrayList<MessageDto>) :
     RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -22,11 +25,11 @@ class MessageAdapter(private val messageList: List<Message>) :
         if (message.isSent) {
             holder.sentMessageLayout.visibility = View.VISIBLE
             holder.receivedMessageLayout.visibility = View.GONE
-            holder.sentMessageText.text = message.text
+            holder.sentMessageText.text = message.content
         } else {
             holder.sentMessageLayout.visibility = View.GONE
             holder.receivedMessageLayout.visibility = View.VISIBLE
-            holder.receivedMessageText.text = message.text
+            holder.receivedMessageText.text = message.content
         }
     }
 
@@ -37,5 +40,12 @@ class MessageAdapter(private val messageList: List<Message>) :
         val receivedMessageLayout: View = itemView.findViewById(R.id.receivedMessageLayout)
         val sentMessageText: TextView = itemView.findViewById(R.id.sentMessageText)
         val receivedMessageText: TextView = itemView.findViewById(R.id.receivedMessageText)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun dipatch(data: ArrayList<MessageDto>) {
+        data.clear()
+        data.addAll(data)
+        notifyDataSetChanged()
     }
 }

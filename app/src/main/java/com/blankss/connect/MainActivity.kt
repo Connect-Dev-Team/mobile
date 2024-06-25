@@ -112,18 +112,21 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
-        clientApi.createUser(request!!).enqueue(object : retrofit2.Callback<Void> {
-            override fun onResponse(p0: Call<Void>, p1: Response<Void>) {
-                startActivity(Intent(
-                    this@MainActivity,
-                    ListFriendActivity::class.java
-                ))
-            }
 
-            override fun onFailure(p0: Call<Void>, p1: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
+        firebaseAuth.currentUser?.getIdToken(true)?.addOnSuccessListener {
+            clientApi.createUser(it.token.toString(),request!!).enqueue(object : retrofit2.Callback<Void> {
+                override fun onResponse(p0: Call<Void>, p1: Response<Void>) {
+                    startActivity(Intent(
+                        this@MainActivity,
+                        ListFriendActivity::class.java
+                    ))
+                }
+
+                override fun onFailure(p0: Call<Void>, p1: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
+        }
     }
 
     override fun onStart() {
