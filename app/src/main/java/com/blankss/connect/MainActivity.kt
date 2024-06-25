@@ -47,12 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.web_client_id))
-            .requestEmail()
-            .build()
-
-
         firebaseAuth = Firebase.auth
         oneTapClient = Identity.getSignInClient(this)
 
@@ -134,12 +128,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-//        if (firebaseAuth.currentUser != null) run {
-//            startActivity(
-//                Intent(
-//                this@MainActivity,
-//                    ListFriendActivity::class.java
-//            ))
-//        }
+        if (firebaseAuth.currentUser != null) run {
+            startActivity(
+                Intent(
+                this@MainActivity,
+                    ListFriendActivity::class.java
+            ))
+        }
     }
 }
